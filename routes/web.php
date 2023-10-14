@@ -57,6 +57,3 @@ Route::get('/test', function(){
     return $array;
 });
 
-
-// I am AAA
-
