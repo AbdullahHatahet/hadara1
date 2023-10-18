@@ -8,30 +8,31 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                <h3 class="card-title">{{ strtoupper($title) }}</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('updateProfile') }}" method="post">
+              <form action="@if( $title == 'edit user'){{ route('updateUser') }}@elseif($title == 'profile'){{ route('updateProfile') }}@else  {{ route('createUserPost') }} @endif" method="post">
                   @csrf
+                  <input type="text" name="user_id" class="form-control" @isset($user) value="{{ $user->id }}" @endisset id="user_id" hidden>
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" value="{{ $user->name }}" id="name" placeholder="Enter name" required>
+                    <label for="name">{{__('words.Name')}}</label>
+                    <input type="text" name="name" class="form-control" @isset($user) value="{{ $user->name }}" @endisset id="name" placeholder="{{__('words.enter_name')}}" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email"  name="email" value="{{$user->email}}"class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                    <label for="exampleInputEmail1">{{__('words.email_address')}}</label>
+                    <input type="email"  name="email" @isset($user) value="{{$user->email}} " @endisset class="form-control" id="exampleInputEmail1" placeholder="{{__('words.enter_email_address')}}" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="exampleInputPassword1">{{ __('words.password') }}</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="{{ __('words.password') }}" @if($title == 'create user') required @endif>
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">{{ __('words.submit') }}</button>
                 </div>
               </form>
             </div>

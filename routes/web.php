@@ -33,7 +33,13 @@ Route::controller(AdminController::class)->middleware('auth')->prefix('dashboard
     Route::get('/index2', 'index2')->name('index2');
     Route::get('/child', 'child')->name('child');
     Route::get('/profile', 'profile')->name('dashboard.profile');
+    Route::get('/users', 'users')->name('dashboard.users');
+    Route::get('/delete-user/{id}', 'delete_user')->name('dashboard.delete_user');
     Route::post('/update-profile', 'updateProfile')->name('updateProfile');
+    Route::get('/edit-user/{user_id}', 'editUser')->name('editUser');
+    Route::post('/update-user', 'updateUser')->name('updateUser');
+    Route::get('/create-user', 'createUser')->name('createUser');
+    Route::post('/create-user', 'createUserPost')->name('createUserPost');
     Route::get('/logout', 'logout')->name('dashboard.logout');
 });
 Auth::routes();
