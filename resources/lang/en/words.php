@@ -21,5 +21,15 @@ return [
     'enter_name' => 'Enter Name',
     'email_address' => 'Email Address',
     'enter_email_address' => 'Enter Email Address',
-
+    'Category' => 'Category',
+    'create_category' => 'Create Category',
+    'save' => 'Save',
+    'close' => 'Close',
+    'name' => 'Name',
+    'image' => 'Image',
+    'price' => 'Price',
+    'status' => 'Status',
+    'category' => 'Category',
+    'Product' => 'Product',
+    'create_product' => 'Create Product',
 ];

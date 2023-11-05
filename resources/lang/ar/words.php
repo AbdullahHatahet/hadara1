@@ -22,5 +22,8 @@ return [
     'enter_name' => 'ادخل اسمك',
     'email_address' => 'عنوان البريد الالكتروني',
     'enter_email_address' => 'ادخل عنوان البريد الالكتروني',
-
+    'Category' => 'الصنف',
+    'create_category' => 'إنشاء صنف جديد',
+    'save' => 'حفظ',
+    'close' => 'إغلاق',
 ];

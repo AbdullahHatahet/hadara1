@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,10 @@ Route::controller(AdminController::class)->middleware('auth')->prefix('dashboard
     Route::post('/create-user', 'createUserPost')->name('createUserPost');
     Route::get('/logout', 'logout')->name('dashboard.logout');
 });
+
+Route::resource('category', CategoryController::class);
+Route::resource('product', ProductController::class);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

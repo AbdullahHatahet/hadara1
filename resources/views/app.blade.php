@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
+  <!-- toastr -->
+  <link rel="stylesheet" href="{{asset('dist/css/toastr.min.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -102,50 +104,20 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item @if($title == 'dashboard') menu-open @endif">
-            <a href="#" class="nav-link @if($title == 'dashboard') active @endif">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('dashboard') }}" class="nav-link @if($title == 'dashboard') active @endif">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+
           <li class="nav-item">
-            <a href="{{ route('child') }}" class="nav-link @if($title == 'child') active @endif">
+            <a href="{{ route('category.index') }}" class="nav-link @if($title == 'category') active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Child
-                <span class="right badge badge-danger">New</span>
+                {{ __('words.Category') }}
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{ route('product.index') }}" class="nav-link @if($title == 'product') active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                {{ __('words.Product') }}
               </p>
             </a>
           </li>
@@ -173,7 +145,7 @@
               </p>
             </a>
           </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -191,7 +163,7 @@
             <h1 class="m-0">{{ strtoupper($title) }}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            
+
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -254,6 +226,38 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js')}}"></script>
 <script src="{{ asset('dist/js/pages/dashboard.js')}}"></script>
+<script src="{{ asset('dist/js/toastr.min.js')}}"></script>
+
+<script>
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+@if(session()->has('message'))
+    <script>
+        toastr["success"]("{{session()->get('message')}}")
+    </script>
+@endif
+@if(session('error'))
+    <script>
+        toastr["error"]("{{session()->get('error')}}")
+    </script>
+@endif
+
 </body>
 
 </html>
